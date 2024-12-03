@@ -121,7 +121,9 @@ For the purposes of this project, you must meet a few technical requirements. Th
 
 ### Teams
 
-TBD
+- Team Mountain: Angelo, Cesar, Kirk, Vanessa
+- Team Waves: Antonio, Eli, Greg, Rob, Pratyusha
+- Team Shrugging: Damar, Deval, Graham, Melissa, Muhammad
 
 ---
 
