@@ -1,0 +1,10 @@
+# ignore jupyter lab checkpoints
+.ipynb_checkpoints
+
+# ignore virtual_documents
+.virtual_documents
+
+# ignore .chache
+.cache.sqlite
+
+
