@@ -31,8 +31,8 @@ Daily Weather Data
 | `date` | `string` | Date on which the data was collected. | Converted to a `datetime` object for time series analysis. |
 | `daylight_duration` | `float` | Length of time between sunrise and sunset, measured in seconds. |  |
 | `sunshine_duration` | `float` | Length of time for which the sun was visible, measured in seconds. |  |
-| `rain_sum` | `float` | Total rainfall, measured in inches. |  |
-| `snowfall_sum` | `float` | Total snowfall, measured in inches. |  |
+| `rain_sum` | `float` | Total rainfall, measured in millimeters. |  |
+| `snowfall_sum` | `float` | Total snowfall, measured in millimeters. |  |
 | `precipitation_hours` | `float` | Length of time during which precipitation occured. |  |
 | `wind_speed_10m_max` | `float` | Maximum wind speed at 10 meters above ground. |  |
 | `wind_gusts_10m_max` | `float` | Maximum wind gusts at 10 meters above ground. |  |
