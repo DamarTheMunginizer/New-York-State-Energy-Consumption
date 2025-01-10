@@ -88,6 +88,14 @@ We require three key pieces of information in order to best inform the Energy Pl
 
 To determine the climatological zones and the source of energy to which they are most amenable, we employ k-means clustering and time-series k-means clustering, both to inspect the number of zones and how those zones might change over time.
 
+### Data Handling
+#### Weather Data
+We gathered daily weather data for the 20 year period spanning 2005 to 2024, across 166 distinct points from New York State from the Open-Meteo API. We discovered after-the-fact that weather data from 2011 onward was only available for a single point, but had operated under the assumption that we had more complete data.
+
+
+#### Load Data
+We gathered data for the energy load from NYISO by zone, then converted the zone-based data by county, accounting for the population of each county. The process to collect the load and population data required building an ETL pipeline for each one, since the data was saved in smaller chunks by non-standard denominations. You can view both pipelines within the code folder.
+
 ### Analysis
 We initially intended to divide New York State into three clusters: one for each energy source we considered to be compatible with the State. A quick k-means clustering algorithm demonstrated that a hydro-electric cluster is not well-defined, thus we focus on solar and wind. With that knowledge in mind, we engineered a few features to improve the separation between clusters, which are clearly indicated above. We then project all of our features through 2030 using a Prophet model (which handles seasonality, trends, and shocks with ease) before fitting a time-series k-means clustering model to it. We see that our clusters shift as time progresses, relative to the 2020 clusters, but we should note that the Open-Meteo data is faulty on collection. As such, our analysis may need to be revisited with more complete data.
 
