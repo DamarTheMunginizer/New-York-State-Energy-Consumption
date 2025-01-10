@@ -130,9 +130,6 @@ ___
 - **Incentive:** \\$25 per MWh of electricity produced for the first 10 years of operation.
 - **For Example:** A 100 MW wind farm generating 250,000 MWh annually could receive upwards of \\$6,250,000 annually in PTCs.
 
-### **State-Specific Incentives (Example - California):**
-- **Self-Generation Incentive Program (SGIP):** Offers rebates of up to **\\$1,200 per kW** for solar installations.
-- **Bonus Rebates:** Additional incentives for low-income or rural areas.
 
 ### **Depreciation Benefits:**
 - **Accelerated Depreciation under MACRS:** Allows for a **5-7 year** depreciation schedule, significantly reducing taxable income and offering substantial tax savings.
@@ -172,7 +169,7 @@ Given the long-term environmental and economic benefits, including job creation 
 ### **Next Steps:**
 - **Feasibility Studies:** Conduct site assessments for solar, wind, and hydropower projects.
   
-- **Engage Stakeholders:** Collaborate with federal, state, and local agencies to secure available incentives and grants.
+- **Engage:** Collaborate with federal, state, and local agencies to secure available incentives and grants.
   
 - **Infrastructure Development:** Allocate funds to integrate renewable energy into the state grid.
 
