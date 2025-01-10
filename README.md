@@ -18,9 +18,9 @@
 ## Overview
 According to the [New York State Energy Plan](https://energyplan.ny.gov/), the State of New York intends to reduce greenhouse gas emissions to 85% of their 1990 levels by 2050. To this end, the State must produce and maintain renewable energy infrastructure to gradually replace the existing carbon-based energy systems in place on a similar, if not accelerated, timescale. In particular, the various climatological zones of New York State are amenable to wind, solar, and hydroelectric power. In order to determine the best locations for each source of energy, we must consider a variety of factors, from typical weather to cost to land use agreements.
 
-We employ clustering methods and neural networks to classify the state into these various climatological zones, so that we might simplify the process for the State Energy Planning Board to determine which land use agreements should be considered for each type of renewable energy source. We then perform a predictive time-series analysis to demonstrate that our proposed plan will continue to serve the State well into the future, in alignment with the state's benchmark goals in 2030, 2040, and 2050.
+We employ clustering methods and time-series analysis to classify the state into these various climatological zones, so that we might simplify the process for the State Energy Planning Board to determine which land use agreements should be considered for each type of renewable energy source. We then perform a predictive time-series analysis to demonstrate that our proposed plan will continue to serve the State into the near future, in alignment with the state's benchmark goals in 2030.
 
-We collect weather data over a 25-year period from 2000 to 2024 using the [open-meteo api](https://open-meteo.com/). Open-meteo collects daily weather data at 05:00 GMT. 
+We collect weather data over a 20-year period from 2005 to 2024 using the [open-meteo api](https://open-meteo.com/). Open-meteo collects daily weather data at 05:00 GMT. In addition, we've collected population data and energy consumption data for the State of New York through 
 
 ## Data Dictionary
 Two datasets are required to successfully replicate our work: the daily weather data from Open-Meteo and the energy consumption data for New York State from ______
@@ -76,6 +76,13 @@ Energy Consumption Data
 ## Executive Summary
 
 ### Purpose
+We require three key pieces of information in order to best inform the Energy Planning Board of the best regions to considering building solar, wind, and hydroelectric energy collection facilities and distribution centers:
+
+- The climatological regions of New York State
+- The demand for energy across the State
+- The cost of building and maintainngg said structures.
+
+
 
 ### Data Handling
 
