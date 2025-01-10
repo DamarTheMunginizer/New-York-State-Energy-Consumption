@@ -51,11 +51,28 @@ Energy Consumption Data
 ## Requirements
 
 ### Hardware
-
+12 threads needed for time series KMeans Clustering Model
 ### Software
 | Library | Module | Purpose |
-|---|---|---|
-
+| --- | --- | --- |
+| `numpy` || Ease of basic aggregate operations on data.|
+| `pandas` || Read our data into a DataFrame, clean it, engineer new features, and write it out to submission files.|
+| `matplotlib` | `pyplot`| Basic plotting functionality.|
+| `seaborn` || More control over plots.|
+| `prophet` || [Procedure for forecasting time series data based on an additive model where non-linear trends are fit with yearly, weekly, and daily seasonality, plus holiday effects.](https://facebook.github.io/prophet/)|
+| `sklearn` | `cluster`| `KMeans` for KMeans clustering.|
+|  | `metrics`| `silhouette_score` for determining the silhouette score.|
+|  | `preprocessing`| `StandardScaler` for scaling data.|
+|  | `pipeline`| `Pipeline` to set up a pipeline for models.|
+|  | `decomposition`| `PCA` to reduce dimensionality of the data.|
+| `tslearn` | `clustering`| `TimeSeriesKMeans` for a KMeans model that accounts for a historic change.|
+| `zipefile` | | To extract files from a zip file.|
+| `os` | | Access operating level commands within python.|
+| `random` | | To generate random seeds for easier analysis of models.|
+| `time` | | To delay the data collection script to avoid minutely and hourly api limits.|
+| `retry_requests` | | `retry` Helps handle HTTP timeouts or network errors.|
+| `openmeteo_requests` | | Required for the open-meteo api.|
+| `requests_cache` | | cahce HTTP requests to reduce the need for repeated network calls.|
 ## Executive Summary
 
 ### Purpose

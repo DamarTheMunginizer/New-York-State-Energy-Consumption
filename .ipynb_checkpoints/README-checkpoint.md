@@ -31,8 +31,8 @@ Daily Weather Data
 | `date` | `string` | Date on which the data was collected. | Converted to a `datetime` object for time series analysis. |
 | `daylight_duration` | `float` | Length of time between sunrise and sunset, measured in seconds. |  |
 | `sunshine_duration` | `float` | Length of time for which the sun was visible, measured in seconds. |  |
-| `rain_sum` | `float` | Total rainfall, measured in inches. |  |
-| `snowfall_sum` | `float` | Total snowfall, measured in inches. |  |
+| `rain_sum` | `float` | Total rainfall, measured in millimeters. |  |
+| `snowfall_sum` | `float` | Total snowfall, measured in millimeters. |  |
 | `precipitation_hours` | `float` | Length of time during which precipitation occured. |  |
 | `wind_speed_10m_max` | `float` | Maximum wind speed at 10 meters above ground. |  |
 | `wind_gusts_10m_max` | `float` | Maximum wind gusts at 10 meters above ground. |  |
@@ -51,11 +51,28 @@ Energy Consumption Data
 ## Requirements
 
 ### Hardware
-
+12 threads needed for time series KMeans Clustering Model
 ### Software
 | Library | Module | Purpose |
-|---|---|---|
-
+| --- | --- | --- |
+| `numpy` || Ease of basic aggregate operations on data.|
+| `pandas` || Read our data into a DataFrame, clean it, engineer new features, and write it out to submission files.|
+| `matplotlib` | `pyplot`| Basic plotting functionality.|
+| `seaborn` || More control over plots.|
+| `prophet` || [Procedure for forecasting time series data based on an additive model where non-linear trends are fit with yearly, weekly, and daily seasonality, plus holiday effects.](https://facebook.github.io/prophet/)|
+| `sklearn` | `cluster`| `KMeans` for KMeans clustering.|
+|  | `metrics`| `silhouette_score` for determining the silhouette score.|
+|  | `preprocessing`| `StandardScaler` for scaling data.|
+|  | `pipeline`| `Pipeline` to set up a pipeline for models.|
+|  | `decomposition`| `PCA` to reduce dimensionality of the data.|
+| `tslearn` | `clustering`| `TimeSeriesKMeans` for a KMeans model that accounts for a historic change.|
+| `zipefile` | | To extract files from a zip file.|
+| `os` | | Access operating level commands within python.|
+| `random` | | To generate random seeds for easier analysis of models.|
+| `time` | | To delay the data collection script to avoid minutely and hourly api limits.|
+| `retry_requests` | | `retry` Helps handle HTTP timeouts or network errors.|
+| `openmeteo_requests` | | Required for the open-meteo api.|
+| `requests_cache` | | cahce HTTP requests to reduce the need for repeated network calls.|
 ## Executive Summary
 
 ### Purpose
