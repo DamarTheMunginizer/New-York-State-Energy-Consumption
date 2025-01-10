@@ -37,13 +37,13 @@ Daily Weather Data
 | `latitude` | `float` | Latitude coordinate. |  |
 | `longitude` | `float` | Longitude coordinate. |  |
 | `precipitation_total` | `float` | Sum of `rain_sum` and `snowfall_sum`. | Engineered. |
-| `wind_speed_above_20` | `interger`| Engineered. |
-| `frequency_above_20` | `interger` | Engineered. |
-| `temperature_range` | `float`| Engineered. |
-| `average_temperature` | `float`| Engineered. |
-| `temp_daylight_interaction` | `float`| Engineered. |
-| `wind_speed_index` | `float`| Engineered. |
-| `month` |`period` | Engineered. |
+| `wind_speed_above_20` | `integer`| Locations with wind speeds above 20 mph. | Engineered. |
+| `frequency_above_20` | `integer` | Counting how frequently a renewable energy-related value surpassed a value of 20 post-standardization. | Engineered. |
+| `temperature_range` | `float`| The span of temperature for a location.| Engineered. |
+| `average_temperature` | `float`| Mean temperature for a location. | Engineered. |
+| `temp_daylight_interaction` | `float`| A measure of the covariance of temperature and daylight duration over a given period. | Engineered. |
+| `wind_speed_index` | `float`| A standardized metric representing wind speed conditions over a specific time period and location. | Engineered. |
+| `month` |`period(M)` | The month to which the datapoint corresponds. | Engineered. |
 
 Energy Consumption Data
 | Information | Data Type | Description | Notes |
@@ -55,7 +55,7 @@ Energy Consumption Data
 ## Requirements
 
 ### Hardware
-12 threads needed for time series KMeans Clustering Model
+The time-series K-Means model is parallelized on 12 threads as written. We recommend that a prospective colleague or student seeking to replicate this work either operates on a machine or server with a CPU that has **at least** 6 cores and 12 threads or modifies the `n_jobs` argument to a lower number. The latter option will increase the computation time significantly.
 ### Software
 | Library | Module | Purpose |
 | --- | --- | --- |
@@ -92,9 +92,14 @@ To determine the climatological zones and the source of energy to which they are
 #### Weather Data
 We gathered daily weather data for the 20 year period spanning 2005 to 2024, across 166 distinct points from New York State from the Open-Meteo API. We discovered after-the-fact that weather data from 2011 onward was only available for a single point, but had operated under the assumption that we had more complete data.
 
+The UV data we collected was completely missing. As such, we opted to remove it. Likewise, two points were missing sunshine duration data. Given that the rows with missing data were so small relative to the overall dataset, we opted to remove these as well.
+
+All of our data presented as "object" types in our pandas dataframe, though all of our data was numeric or a "datetime" in nature. We manually adjusted the datatypes to account for this, which is reflected in the data dictionary above. Since the weather data was collected at the same time everyday, we opted to remove the timestamp at the end of every date.
+
+After checking for correlations between the native features of our dataset that remained, we engineered some additional features, which are made plain above. We also consolidated the precipitation sum into a single feature, since the distinct type of precipitation does not have an impact on the viability for solar or hydroelectric power.
 
 #### Load Data
-We gathered data for the energy load from NYISO by zone, then converted the zone-based data by county, accounting for the population of each county. The process to collect the load and population data required building an ETL pipeline for each one, since the data was saved in smaller chunks by non-standard denominations. You can view both pipelines within the code folder.
+The load data required less transformation in the same sense as the weather data. We gathered data for the energy load from NYISO by zone, then converted the zone-based data by county, accounting for the population of each county. The process to collect the load and population data required building an ETL pipeline for each one, since the data was saved in smaller chunks by non-standard denominations. You can view both pipelines within the code folder.
 
 ### Analysis
 We initially intended to divide New York State into three clusters: one for each energy source we considered to be compatible with the State. A quick k-means clustering algorithm demonstrated that a hydro-electric cluster is not well-defined, thus we focus on solar and wind. With that knowledge in mind, we engineered a few features to improve the separation between clusters, which are clearly indicated above. We then project all of our features through 2030 using a Prophet model (which handles seasonality, trends, and shocks with ease) before fitting a time-series k-means clustering model to it. We see that our clusters shift as time progresses, relative to the 2020 clusters, but we should note that the Open-Meteo data is faulty on collection. As such, our analysis may need to be revisited with more complete data.
