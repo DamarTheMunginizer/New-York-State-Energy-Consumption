@@ -1,6 +1,6 @@
 <img src="http://imgur.com/1ZcRyrc.png" style="float: left; margin: 20px; height: 90px">
 
-# Project 5 (Add new title here)
+# Project 5: New York State of Energy - Renewable Energy by 2030
 
 *Team: Muhammad Haseeb Anjum, Graham Haun, Melissa Marshall, Deval Mehta, Damar Shipp*
 
@@ -18,12 +18,10 @@
 ## Overview
 According to the [New York State Energy Plan](https://energyplan.ny.gov/), the State of New York intends to reduce greenhouse gas emissions to 85% of their 1990 levels by 2050. To this end, the State must produce and maintain renewable energy infrastructure to gradually replace the existing carbon-based energy systems in place on a similar, if not accelerated, timescale. In particular, the various climatological zones of New York State are amenable to wind, solar, and hydroelectric power. In order to determine the best locations for each source of energy, we must consider a variety of factors, from typical weather to cost to land use agreements.
 
-We employ clustering methods and time-series analysis to classify the state into these various climatological zones, so that we might simplify the process for the State Energy Planning Board to determine which land use agreements should be considered for each type of renewable energy source. We then perform a predictive time-series analysis to demonstrate that our proposed plan will continue to serve the State into the near future, in alignment with the state's benchmark goals in 2030.
-
-We collect weather data over a 20-year period from 2005 to 2024 using the [open-meteo api](https://open-meteo.com/). Open-meteo collects daily weather data at 05:00 GMT. In addition, we've collected population data and energy consumption data for the State of New York through 
+We employ k-means clustering and time-series analysis to classify the state into distinct climatological zones, so that we might simplify the process for the State Energy Planning Board to determine which land use agreements should be considered for each type of renewable energy source. We then perform a predictive time-series analysis to demonstrate that our proposed plan will continue to serve the State into the near future, in alignment with the state's benchmark goals in 2030.
 
 ## Data Dictionary
-Two datasets are required to successfully replicate our work: the daily weather data from Open-Meteo and the energy consumption data for New York State from ______
+We collect weather data over a 20-year period from 2005 to 2024 using the [open-meteo api](https://open-meteo.com/). Open-meteo collects daily weather data at 05:00 GMT. In addition, we've collected energy consumption data for the State of New York from [New York Independent System Operators](https://www.nyiso.com/) and population data from [New York State's public data respository](https://data.ny.gov/Government-Finance/Annual-Population-Estimates-for-New-York-State-and/krt9-ym2k/about_data).
 
 Daily Weather Data
 | Information | Data Type | Description | Notes |
@@ -80,14 +78,19 @@ We require three key pieces of information in order to best inform the Energy Pl
 
 - The climatological regions of New York State
 - The demand for energy across the State
-- The cost of building and maintainngg said structures.
+- The cost of building and maintaining said structures
 
-
-
-### Data Handling
+To determine the climatological zones and the source of energy to which they are most amenable, we employ k-means clustering and time-series k-means clustering, both to inspect the number of zones and how those zones might change over time.
 
 ### Analysis
+We initially intended to divide New York State into three clusters: one for each energy source we considered to be compatible with the State. A quick k-means clustering algorithm demonstrated that a hydro-electric cluster is not well-defined, thus we focus on solar and wind. With that knowledge in mind, we engineered a few features to improve the separation between clusters, which are clearly indicated above. We then project all of our features through 2030 using a Prophet model (which handles seasonality, trends, and shocks with ease) before fitting a time-series k-means clustering model to it. We see that our clusters shift as time progresses, relative to the 2020 clusters, but we should note that the Open-Meteo data is faulty on collection. As such, our analysis may need to be revisited with more complete data.
+
+We also projected New York State's energy use through 2030 with a Prophet model. Here the data was more complete and required no feature engineering and our projected data aligns very well with historic changes. We see that the State's energy consumption drops over time, with seasonal upticks during the Summer months. We would expect energy consumption to taper at some point, however our projections show it completely vanishing, which is unrealistic. This is one of the faults with time-series analysis.
+
+As the energy consumption for the State drops, the cost of energy production would as well, as some solar and wind farms can be retired. Our cost analysis is purely based on research in public-facing figures from The United States Department of Energy, the National Renewable Energy Laboratory, The International Renewable Energy Agency, and the United States Energy Information Agency. We do expect that the cost for maintaining solar and wind farms will be impacted by inflation, but not enough to offset the savings presented by the lower cost of use.
 
 ### Findings and Implications
+Our present analysis suggests that New York State is in a great position to take advantage of wind and solar farms to produce and store energy to service the whole State's needs. The construction, staffing, and maintenance of these new facilities is projected to produce around 250,000 new jobs and save the State trillions in the long term, compared to the present energy infrastructure. As the effects of human-accelerated climate change become more visible, the climatological zones of New York State will muddle as well, with the "solar" zone growing larger.
 
 ### Next Steps
+Future work would confirm that our proposal accurately assesses and meets New York's energy needs through 2050 and beyond. We do caution, however, that long-term time-series projections tend to be unreliable, though there is a margin of confidence we may able to provide. The New York State Energy Planning Board should proceed to check land use agreements in accordance with our recommendations.
