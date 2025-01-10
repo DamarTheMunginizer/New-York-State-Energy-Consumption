@@ -20,7 +20,7 @@ According to the [New York State Energy Plan](https://energyplan.ny.gov/), the S
 
 We employ k-means clustering and time-series analysis to classify the state into distinct climatological zones, so that we might simplify the process for the State Energy Planning Board to determine which land use agreements should be considered for each type of renewable energy source. We then perform a predictive time-series analysis to demonstrate that our proposed plan will continue to serve the State into the near future, in alignment with the state's benchmark goals in 2030.
 
-We collect weather data over a 20-year period from 2005 to 2024 using the [open-meteo api](https://open-meteo.com/). Open-meteo collects daily weather data at 05:00 GMT. In addition, we've collected population data and energy consumption data for the State of New York through 
+We collect weather data over a 20-year period from 2005 to 2024 using the [open-meteo api](https://open-meteo.com/). Open-meteo collects daily weather data at 05:00 GMT. In addition, we've collected population data and energy consumption data for the State of New York through the 
 
 ## Data Dictionary
 Two datasets are required to successfully replicate our work: the daily weather data from Open-Meteo and the energy consumption data for New York State from ______
