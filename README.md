@@ -37,7 +37,13 @@ Daily Weather Data
 | `latitude` | `float` | Latitude coordinate. |  |
 | `longitude` | `float` | Longitude coordinate. |  |
 | `precipitation_total` | `float` | Sum of `rain_sum` and `snowfall_sum`. | Engineered. |
-| `location` | `tuple` | (`latitude`, `longitude`) | Engineered. |
+| `wind_speed_above_20` | `interger`| Engineered. |
+| `frequency_above_20` | `interger` | Engineered. |
+| `temperature_range` | `float`| Engineered. |
+| `average_temperature` | `float`| Engineered. |
+| `temp_daylight_interaction` | `float`| Engineered. |
+| `wind_speed_index` | `float`| Engineered. |
+| `month` |`period` | Engineered. |
 
 Energy Consumption Data
 | Information | Data Type | Description | Notes |
