@@ -27,3 +27,5 @@ def extract_data (file,start_date,end_date):
     df.sort_values(by='Date', inplace = True)
     df = df[(df['Date'] >= start_date) & (df['Date'] <= end_date)]
     return df.to_csv(f'data/load_data_from_{start_date}_to_{end_date}.csv')
+
+extract_data('Counties_Forecast.csv','2005-01-01','2030-12-31')
